@@ -1,0 +1,5 @@
+# AI Voice Assistant Architecture Note
+
+The prototype is an open-ended voice and text assistant. Browser MediaRecorder captures a voice turn and detects the pause; a local Node.js server sends the audio clip to Groq's Whisper Large V3 Turbo transcription endpoint, then sends the transcript and recent conversation to Groq Chat Completions using `openai/gpt-oss-120b` by default. Browser speech synthesis reads the answer aloud. The model can respond to general questions, use recent conversation turns as context, and ask clarifying questions where useful. It is instructed to give a brief rationale rather than private chain-of-thought.
+
+The seller snapshot is fictional and optional. When selected, the server adds the mock metrics to the model instructions; otherwise the assistant receives no seller-specific sample context. No Snapdeal systems or live seller data are connected. The demo requires an OpenAI API key, Node.js, an internet connection, and a browser with Web Speech API support for voice. It does not browse the web, so answers needing current facts should be independently verified.
